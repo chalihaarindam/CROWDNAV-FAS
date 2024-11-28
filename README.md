@@ -12,7 +12,7 @@ Also runtime data is send to a kafka queue to allow stream processing and logger
 * Docker
 * Docker Compose
 
-
+**IGNORE RESULT DATA IN GITHUB(ADAPTATION STRATEGY TESTING DATA) REFER REPORT FOR BASELINE DATA.
 
 ## UPISAS setup
 * Run `docker compose -f docker-compose.upisas.yml up -d`  to run all the images (CrowdNav, Kafka) in detached mode
@@ -27,6 +27,7 @@ Also runtime data is send to a kafka queue to allow stream processing and logger
 * Run  ` docker exec -it http-server python /code/experiment_runner/main.py`  to run http-server
 * Run  `docker exec -it http-server cat /code/results/data/baseline_results.csv`  to run http-server
 * RUN `docker cp http-server:/code/results ./results` to save results
+  
 
   
 ## Folder structure
