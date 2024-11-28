@@ -123,3 +123,16 @@ class BayesianOptimization:
         x_samples = np.random.uniform(bounds[:, 0], bounds[:, 1], (num_samples, len(bounds)))
         ei = self.expected_improvement(x_samples)
         return x_samples[np.argmax(ei)]
+
+class EpsilonGreedy(BayesianOptimization):
+    def __init__(self, parameter_bounds, epsilon=0.1, surrogate_model=None, xi=0.01):
+        super().__init__(parameter_bounds, surrogate_model, xi)
+        self.epsilon = epsilon
+
+    def suggest_next_point(self, X, y):
+        if np.random.rand() < self.epsilon:
+            # Exploration: Randomly select a point
+            return np.random.uniform(self.parameter_bounds[:, 0], self.parameter_bounds[:, 1])
+        else:
+            # Exploitation: Use the base class method to find the best point
+            return super().suggest_next_point(X, y)
